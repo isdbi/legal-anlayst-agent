@@ -1,0 +1,7 @@
+Sample Confidentiality Clause (UAE)
+
+The Parties agree that all confidential information disclosed under this Agreement shall: 
+(a) remain the sole property of the Disclosing Party; 
+(b) not be disclosed to any third party without prior written consent; 
+(c) be used solely for the purposes of this Agreement; 
+and (d) be protected with at least the same degree of care as the Receiving Party uses to protect its own confidential information, but in no event less than a reasonable degree of care.

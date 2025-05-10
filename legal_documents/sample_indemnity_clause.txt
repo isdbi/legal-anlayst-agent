@@ -1,0 +1,3 @@
+Sample Indemnity Clause
+
+The Indemnifying Party shall indemnify, defend, and hold harmless the Indemnified Party against any and all losses, liabilities, damages, costs, and expenses (including reasonable attorneys' fees) arising out of or in connection with any third-party claims resulting from the Indemnifying Party's breach of this Agreement or negligent acts or omissions.

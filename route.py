@@ -1,6 +1,8 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, File, HTTPException, UploadFile
+import fitz
 from pydantic import BaseModel
 import uvicorn
+import markdown2
 
 from agenttest import LegalAnalysisAgent
 from agenttest import ContractAnalysis  # Assuming ContractAnalysis is exported from agent.py
@@ -26,18 +28,39 @@ def health_check():
     """Health check endpoint"""
     return {"status": "ok"}
 
-@app.post("/analyze", response_model=ContractAnalysis, tags=["Analysis"])
-def analyze_contract(request: ContractRequest):
-    """Analyze a contract and return compliance analysis"""
+
+
+
+
+def extract_text(file: UploadFile) -> str:
+    filename = file.filename.lower()
+    if filename.endswith(".pdf"):
+        # PDF to text
+        with fitz.open(stream=file.file.read(), filetype="pdf") as doc:
+            text = ""
+            for page in doc:
+                text += page.get_text()
+            return text
+    elif filename.endswith(".md"):
+        md_content = file.file.read().decode("utf-8")
+        return markdown2.markdown(md_content)
+    elif filename.endswith(".txt"):
+        return file.file.read().decode("utf-8")
+    else:
+        raise ValueError("Unsupported file type. Only PDF, Markdown (.md), or TXT are allowed.")
+
+@app.post("/analyze/file", response_model=ContractAnalysis)
+async def analyze_file(file: UploadFile = File(...), jurisdiction: str = "UAE", check_shariah: bool = True):
     try:
+        contract_text = extract_text(file)
         result = agent.analyze_full_contract(
-            contract_text=request.contract_text,
-            jurisdiction=request.jurisdiction,
-            check_shariah=request.check_shariah
+            contract_text=contract_text,
+            jurisdiction=jurisdiction,
+            check_shariah=check_shariah
         )
         return result
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        raise HTTPException(status_code=400, detail=str(e))
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
