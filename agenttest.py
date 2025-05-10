@@ -1,3 +1,4 @@
+import json
 import os
 import glob
 import sys
@@ -133,14 +134,55 @@ class LegalAnalysisAgent:
         return clauses
 
     def detect_gaps(self, document_text: str, document_type: str, jurisdiction: str) -> List[str]:
-        template = "For a {document_type} in {jurisdiction}, analyze this document and list missing clauses:\n{document_text}"  
-        prompt = PromptTemplate(template=template,
-                                input_variables=["document_text","document_type","jurisdiction"])
-        chain = LLMChain(llm=self.llm, prompt=prompt)
-        resp = chain.invoke({"document_text": document_text,
-                              "document_type": document_type,
-                              "jurisdiction": jurisdiction})
-        return [line.strip() for line in resp.splitlines() if line.strip()]
+    
+
+     template = (
+        "You are a legal expert. For a {document_type} in {jurisdiction}, "
+        "analyze this document and return a JSON array of strings listing the **missing or underdeveloped clauses**. "
+        "Each item should be one short sentence like: 'Missing confidentiality clause.' or "
+        "'Termination clause lacks details on notice period.'\n\n"
+        "Document:\n{document_text}"
+    )
+     prompt = PromptTemplate(template=template,
+                            input_variables=["document_text", "document_type", "jurisdiction"])
+    
+     input_text = prompt.format(
+        document_text=document_text,
+        document_type=document_type,
+        jurisdiction=jurisdiction
+    )
+
+     chain = LLMChain(llm=self.llm, prompt=prompt)
+     resp = chain.invoke({
+    "document_text": document_text,
+    "document_type": document_type,
+    "jurisdiction": jurisdiction
+})
+     logger.info(f"Response from LLM: {resp}")
+        # Check if the response is a dictionary or a string
+        
+    
+        
+
+    # Extract response text
+     if isinstance(resp, dict):
+        resp_text = resp.get("output", "") or resp.get("text", "")
+     else:
+        resp_text = str(resp)
+
+    # Try to parse JSON
+     try:
+        result = json.loads(resp_text)
+        if isinstance(result, list) and all(isinstance(item, str) for item in result):
+            return result
+        else:
+            raise ValueError("Invalid structure: not a list of strings")
+     except json.JSONDecodeError as e:
+        logger.warning(f"Failed to parse JSON from LLM output: {e}")
+        return [line.strip() for line in resp_text.splitlines() if line.strip()]
+
+
+     
 
     def check_compliance(self, clause_text: str, jurisdiction: str) -> Dict[str, Any]:
         retriever = self.knowledge_base.as_retriever(search_kwargs={"k":5, "filter":{"jurisdiction": jurisdiction}})
