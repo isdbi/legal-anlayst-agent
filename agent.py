@@ -37,7 +37,7 @@ load_dotenv()
 # Configuration
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 MODEL_NAME = os.getenv("MODEL_NAME", "gpt-4-turbo")
-TEMPERATURE = float(os.getenv("TEMPERATURE", "0"))
+TEMPERATURE = (os.getenv("TEMPERATURE", 0))
 EMBEDDING_MODEL = os.getenv("EMBEDDING_MODEL", "text-embedding-ada-002")
 VECTOR_DB_DIR = os.getenv("VECTOR_DB_DIR", "./legal_knowledge_base")
 LEGAL_DOCS_DIR = os.getenv("LEGAL_DOCS_DIR", "./legal_documents")
@@ -299,7 +299,8 @@ class LegalAnalysisAgent:
         extraction_chain = create_extraction_chain(schema, self.llm)
         
         # Run extraction
-        result = extraction_chain.run(document_text)
+        result = extraction_chain.invoke({"input": document_text})
+
         
         # Convert to Pydantic models
         clauses = []
@@ -314,7 +315,7 @@ class LegalAnalysisAgent:
         logger.info(f"Extracted {len(clauses)} clauses")
         return clauses
     
-    def detect_gaps(self, document_type: str, jurisdiction: str) -> List[str]:
+    def detect_gaps(self, document_text: str, document_type: str, jurisdiction: str) -> List[str]:
         """Detect missing clauses by comparing to templates"""
         logger.info(f"Detecting gaps for {document_type} in {jurisdiction}")
         
@@ -322,6 +323,9 @@ class LegalAnalysisAgent:
         template = """
         For a {document_type} in {jurisdiction}, identify which standard clauses are typically required.
         Then provide a list of clause types that appear to be missing from the contract.
+        
+        this is the document that needs to be analyzed:
+        {document_text}
         
         Required clauses typically include:
         - Parties identification
@@ -513,7 +517,7 @@ class LegalAnalysisAgent:
         
         # Detect gaps
         document_type = "contract"  # This could be inferred in a more sophisticated implementation
-        missing_clauses = self.detect_gaps(document_type, jurisdiction)
+        missing_clauses = self.detect_gaps(contract_text, document_type, jurisdiction)
         
         # Analyze each clause
         analyzed_clauses = []

@@ -1,0 +1,77 @@
+LOAN AGREEMENT
+
+THIS LOAN AGREEMENT (the "Agreement") is made and entered into on May 10, 2025, by and between:
+
+LENDER: ABC Bank, a financial institution organized under the laws of UAE, with its principal place of business at Financial District, Dubai, UAE ("Lender")
+
+AND
+
+BORROWER: XYZ Company LLC, a limited liability company organized under the laws of UAE, with its principal place of business at Business Bay, Dubai, UAE ("Borrower")
+
+WHEREAS, Borrower has requested Lender to extend a loan facility, and Lender has agreed to provide such facility subject to the terms and conditions of this Agreement.
+
+NOW, THEREFORE, in consideration of the mutual covenants and agreements contained herein, the parties agree as follows:
+
+1. LOAN AMOUNT
+   Lender agrees to lend to Borrower the sum of AED 1,000,000 (One Million UAE Dirhams) (the "Loan").
+
+2. PURPOSE
+   The Loan shall be used exclusively for business expansion purposes and not for any personal, family, or household purposes.
+
+3. DISBURSEMENT
+   The Loan shall be disbursed in a single tranche directly to Borrower's account within 5 business days of the execution of this Agreement.
+
+4. TERM
+   The term of the Loan shall be 24 months from the date of disbursement.
+
+5. INTEREST RATE
+   Borrower shall pay interest on the outstanding principal balance of the Loan at a fixed rate of 5% per annum, calculated on a 365-day year basis.
+
+6. REPAYMENT
+   6.1 Borrower shall repay the Loan in 24 equal monthly installments of AED 43,871, including principal and interest.
+   6.2 The first installment shall be due and payable one month after the date of disbursement, with subsequent installments due on the same day of each month thereafter.
+   6.3 All payments shall be made in UAE Dirhams to the account designated by Lender.
+
+7. PREPAYMENT
+   Borrower may prepay the Loan in whole or in part at any time without penalty. Any partial prepayment shall be applied first to accrued interest and then to principal.
+
+8. LATE PAYMENT
+   If any payment is not received within 10 days after its due date, Borrower shall pay a late fee equal to 5% of the overdue amount plus interest at the rate of 1% per month on the outstanding balance until paid in full.
+
+9. SECURITY
+   9.1 As security for the Loan, Borrower hereby grants to Lender a first-priority security interest in all equipment purchased using the Loan proceeds.
+   9.2 Borrower shall execute all documents necessary to perfect Lender's security interest.
+
+10. REPRESENTATIONS AND WARRANTIES
+    Borrower represents and warrants that:
+    10.1 It is duly organized and validly existing under the laws of UAE.
+    10.2 It has the power and authority to enter into this Agreement.
+    10.3 The execution and delivery of this Agreement do not violate any agreement to which Borrower is a party.
+    10.4 All financial information provided to Lender is true and correct in all material respects.
+
+11. EVENTS OF DEFAULT
+    Each of the following shall constitute an Event of Default:
+    11.1 Failure to make any payment when due.
+    11.2 Breach of any representation, warranty, or covenant.
+    11.3 Insolvency or bankruptcy of Borrower.
+    11.4 Any material adverse change in Borrower's financial condition.
+
+12. REMEDIES
+    Upon the occurrence of an Event of Default, Lender may:
+    12.1 Declare the entire unpaid principal balance, together with accrued interest, immediately due and payable.
+    12.2 Exercise all rights and remedies available under applicable law.
+
+13. GOVERNING LAW
+    This Agreement shall be governed by and construed in accordance with the laws of the United Arab Emirates.
+
+14. NOTICES
+    All notices shall be in writing and delivered to the addresses set forth above, or to such other address as either party may designate by written notice.
+
+IN WITNESS WHEREOF, the parties have executed this Agreement as of the date first above written.
+
+LENDER:                                  BORROWER:
+ABC Bank                                 XYZ Company LLC
+
+By: ___________________                  By: ___________________
+Name: Mohammed Al Maktoum                Name: Sarah Johnson
+Title: Senior Loan Officer               Title: Managing Director
